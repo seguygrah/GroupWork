@@ -1,10 +1,11 @@
 # GroupWork
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>After School Club</title>
+    <title>After School Classes</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
 </head>
 <body>
@@ -15,9 +16,8 @@
         <p>Price: {{product.price}}</p>
         <p>Availability: {{product.availability}}</p>
 
-        <button v-if="product.availability > 0" v-on:click="add_to_cart">Add To Cart</button>
+        <button v-if="product.availability > 0" v-on:click="add_to_cart">Add To Cart </button>
         <button v-if="cart.length > 0" v-on:click="remove_from_cart(product.id)">Remove From Cart</button>
-
     </div>
 </body>
 </html>
