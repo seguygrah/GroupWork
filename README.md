@@ -18,7 +18,6 @@
 
         <button v-if="product.availability > 0" v-on:click="add_to_cart">Add To Cart </button>
         <button v-if="cart.length > 0" v-on:click="remove_from_cart(product.id)">Remove From Cart</button>
-
     </div>
 </body>
 </html>
