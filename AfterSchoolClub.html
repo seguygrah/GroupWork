@@ -15,8 +15,8 @@
                 <p>Location: {{module.location}}</p>
                 <p>Price: {{module.price}}</p>
                 <p>Availability: {{module.availableSpaces}}</p>
-
-                <button v-if="module.availableSpaces > 0" v-on:click="addToYalla">Pick</button>
+                <p>{{module.image}}</p>
+                <button v-if="module.availableSpaces > 0" v-on:click="addToYalla">pick</button>
 
         </div>
     </body>
@@ -31,6 +31,7 @@
                     location: "Dubai",
                     price: "AED368",
                     availableSpaces: 6,
+                    image: "math logo.png"
                 },
                 picked: []
 
