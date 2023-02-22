@@ -16,7 +16,7 @@
                 <p>Price: {{module.price}}</p>
                 <p>Availability: {{module.availableSpaces}}</p>
 
-                <button v-if="module.availableSpaces > 0" v-on:click="addToYalla">Yalla</button>
+                <button v-if="module.availableSpaces > 0" v-on:click="addToYalla">Pick</button>
 
         </div>
     </body>
@@ -32,14 +32,14 @@
                     price: "AED368",
                     availableSpaces: 6,
                 },
-                yalla: []
+                picked: []
 
 
             },
         methods: {
             addToYalla () {
 
-                    this.yalla.push(this.module.id)
+                    this.picked.push(this.module.id)
                     this.module.availableSpaces--
             }
         }
