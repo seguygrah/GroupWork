@@ -18,8 +18,26 @@
 
                 <button v-if="product.availability > 0" v-on:click="add_to_cart">Add To Cart</button>
 
-                <button v-if="cart.length > 0" v-on:click="remove_from_cart(product.id)">Remove From Cart</button>
-
         </div>
     </body>
+    <script>
+        const app= new Vue ({
+
+            el: "#app",
+            data: {
+                module:{
+                    id: 0001,
+                    modName: "Math",
+                    location: "Dubai",
+                    price: "AED368",
+                    availableSpaces: 6,
+                },
+                yalla: []
+
+
+            },
+
+        })
+        
+    </script>
 </html>
