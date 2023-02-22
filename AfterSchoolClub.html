@@ -10,13 +10,13 @@
     <body>
         <div id="app">
 
-                <h1>Cart: {{cart.length}}</h1>
-                <h2>Modules: {{product.modules}}</h2>
-                <p>Location: {{product.location}}</p>
-                <p>Price: {{product.price}}</p>
-                <p>Availability: {{product.availability}}</p>
+                <h1>Yalla: {{yalla.length}}</h1>
+                <h2>Modules: {{module.modName}}</h2>
+                <p>Location: {{module.location}}</p>
+                <p>Price: {{module.price}}</p>
+                <p>Availability: {{module.availableSpaces}}</p>
 
-                <button v-if="product.availability > 0" v-on:click="add_to_cart">Add To Cart</button>
+                <button v-if="module.availableSpaces > 0" v-on:click="addToYalla">Yalla</button>
 
         </div>
     </body>
@@ -36,6 +36,13 @@
 
 
             },
+        methods: {
+            addToYalla () {
+
+                    this.yalla.push(this.module.id)
+                    this.module.availableSpaces--
+            }
+        }
 
         })
         
