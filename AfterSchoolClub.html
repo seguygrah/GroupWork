@@ -17,10 +17,30 @@
       .moduleBox {
         display: flex;
         align-items: center;
+        border: 2px solid teal;
+        border-radius: 20px;
+        margin: 10px 40px;
+        max-width: fit-content;
+      }
+      /* styles the h1 tag */
+      h1 {
+        font-family: monospace;
+      }
+      /* styles the button */
+      #button {
+        background-color: teal;
+        color: white;
+        padding: 10px;
+        font-size: medium;
+        border-radius: 15px;
+      }
+      /* styles the module name */
+      #modName {
+        color: teal;
       }
       /* styles the module details  */
       .detailBox {
-        margin-left: 20px;
+        margin: 10px 30px;
       }
     </style>
     <div id="app">
@@ -37,17 +57,14 @@
             </figure>
 
             <div class="detailBox">
-              <h2>Modules: {{module.modName}}</h2>
-              <p>Location: {{module.location}}</p>
-              <p>Price: {{module.price}}</p>
-              <p>Availability: {{module.availableSpaces}}</p>
-              <button
-                v-if="module.availableSpaces > 0"
-                v-on:click="addToPicked"
-              >
-                pick
+              <h2>Module:<b id="modName"> {{module.modName}} </b></h2>
+              <p><b>Location:</b> {{module.location}}</p>
+              <p><b>Price:</b> {{module.price}}</p>
+              <p><b>Availability:</b> {{numAvailableMod}}</p>
+              <button v-if="canPick" id="button" v-on:click="addToPicked">
+                Pick
               </button>
-              <button disabled="disabled" v-else>pick</button>
+              <button disabled="disabled" v-else>Out of Stock!!</button>
             </div>
           </div>
         </div>
@@ -73,8 +90,17 @@
       },
       methods: {
         addToPicked() {
-          this.picked.push(this.module.id); //pushing picked modules inside the picked arraw
-          this.module.availableSpaces--; //decreases the amount of spaces available each time the user adds a slot.
+          this.picked.push(this.module.id); //pushing picked modules inside the picked array
+        },
+      },
+      computed: {
+        //function to check if user can still pick modules
+        canPick() {
+          return this.picked.length < 6; //returns true if the user has less than 6 items in the cart
+        },
+        //function that returns the number of available modules
+        numAvailableMod() {
+          return this.module.availableSpaces - this.picked.length;
         },
       },
     });
