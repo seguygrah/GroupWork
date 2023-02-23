@@ -1,60 +1,82 @@
 <html lang="en">
-    <head>
-        
-            <meta charset="UTF-8"> <!--setting the type of characters mode that wil be used-->
-            <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--making it work on Edge and Internet explorer-->
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--setting page size-->
-            <title>After School Club</title> <!--site name defined-->
-            <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> <!--pulling Vue js library-->
-    </head>
-    <body>
-        <div id="app"> <!--mounting application-->
-            <main >
-                <h1>Picked Slots: {{picked.length}}</h1> <!--Defining the picked slots. {{picked.length}} will display the slots available-->
+  <head>
+    <meta charset="UTF-8" />
+    <!--setting the type of characters mode that wil be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--making it work on Edge and Internet explorer-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--setting page size-->
+    <title>After School Club</title>
+    <!--site name defined-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <!--pulling Vue js library-->
+  </head>
+  <body>
+    <style>
+      /* styles the module box  */
+      .moduleBox {
+        display: flex;
+        align-items: center;
+      }
+      /* styles the module details  */
+      .detailBox {
+        margin-left: 20px;
+      }
+    </style>
+    <div id="app">
+      <!--mounting application-->
+      <main>
+        <div>
+          <h1>Picked Slots: {{picked.length}}</h1>
+          <!--Defining the picked slots. {{picked.length}} will display the slots available-->
 
-                <figure>
-                <img :src = "module.image">  <!--sourcing the image for it to be displayed on the page-->
-                </figure>
-               
-                <h2> Modules: {{module.modName}}</h2>
-                <p>Location: {{module.location}}</p>
-                <p>Price: {{module.price}}</p>
-                <p>Availability: {{module.availableSpaces}}</p>
-                <button v-if="module.availableSpaces > 0" v-on:click="addToPicked">pick</button>
-                <button disabled="disabled" v-else> 
-                    pick
-                </button>
-               
+          <div class="moduleBox">
+            <figure>
+              <img :src="module.image" />
+              <!--sourcing the image for it to be displayed on the page-->
+            </figure>
 
-            </main>
+            <div class="detailBox">
+              <h2>Modules: {{module.modName}}</h2>
+              <p>Location: {{module.location}}</p>
+              <p>Price: {{module.price}}</p>
+              <p>Availability: {{module.availableSpaces}}</p>
+              <button
+                v-if="module.availableSpaces > 0"
+                v-on:click="addToPicked"
+              >
+                pick
+              </button>
+              <button disabled="disabled" v-else>pick</button>
+            </div>
+          </div>
         </div>
-    </body>
-    <script>
-        const app= new Vue ({ //initializing the vue instance
+      </main>
+    </div>
+  </body>
+  <script>
+    const app = new Vue({
+      //initializing the vue instance
 
-            el: "#app", //connecting it to the "div" mount
-            data: { //defining the data
-                module:{
-                    id: 0001,
-                    modName: "Math",
-                    location: "Dubai",
-                    price: "AED368",
-                    availableSpaces: 6,
-                    image: "img/mathlogo.png" //defining the image path
-                },
-                picked: [] //setting "pick" array for the "addToPicked" function to the slots of spaces available
-
-
-            },
-        methods: { 
-            addToPicked () {
-
-                    this.picked.push(this.module.id) //pushing picked modules inside the picked arraw
-                    this.module.availableSpaces-- //decreases the amount of spaces available each time the user adds a slot.
-            }
-        }
-
-        })
-        
-    </script>
+      el: "#app", //connecting it to the "div" mount
+      data: {
+        //defining the data
+        module: {
+          id: 0001,
+          modName: "Math",
+          location: "Dubai",
+          price: "AED368",
+          availableSpaces: 6,
+          image: "img/mathlogo.png", //defining the image path
+        },
+        picked: [], //setting "pick" array for the "addToPicked" function to the slots of spaces available
+      },
+      methods: {
+        addToPicked() {
+          this.picked.push(this.module.id); //pushing picked modules inside the picked arraw
+          this.module.availableSpaces--; //decreases the amount of spaces available each time the user adds a slot.
+        },
+      },
+    });
+  </script>
 </html>
