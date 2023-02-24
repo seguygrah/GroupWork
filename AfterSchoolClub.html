@@ -57,15 +57,12 @@
             </figure>
 
             <div class="detailBox">
-              <h2>Modules: {{module.modName}}</h2>
-              <p>Location: {{module.location}}</p>
-              <p>Price: {{module.price}}</p>
-              <p>Availability: {{module.availableSpaces}}</p>
-              <button
-                v-if="module.availableSpaces > 0"
-                v-on:click="addToPicked"
-              >
-                pick
+              <h2>Module:<b id="modName"> {{module.modName}} </b></h2>
+              <p><b>Location:</b> {{module.location}}</p>
+              <p><b>Price:</b> {{module.price}}</p>
+              <p><b>Availability:</b> {{numAvailableMod}}</p>
+              <button v-if="canPick" id="button" v-on:click="addToPicked">
+                Pick
               </button>
               <button disabled="disabled" v-else>Class is full</button>
             </div>
