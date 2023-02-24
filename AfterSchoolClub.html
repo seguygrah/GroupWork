@@ -17,10 +17,30 @@
       .moduleBox {
         display: flex;
         align-items: center;
+        border: 2px solid teal;
+        border-radius: 20px;
+        margin: 10px 40px;
+        max-width: fit-content;
+      }
+      /* styles the h1 tag */
+      h1 {
+        font-family: monospace;
+      }
+      /* styles the button */
+      #button {
+        background-color: teal;
+        color: white;
+        padding: 10px;
+        font-size: medium;
+        border-radius: 15px;
+      }
+      /* styles the module name */
+      #modName {
+        color: teal;
       }
       /* styles the module details  */
       .detailBox {
-        margin-left: 20px;
+        margin: 10px 30px;
       }
     </style>
     <div id="app">
@@ -43,10 +63,11 @@
               <p>Availability: {{module.availableSpaces}}</p>
               <button
                 v-if="module.availableSpaces > 0"
-                v-on:click="addToPicked">
+                v-on:click="addToPicked"
+              >
                 pick
               </button>
-              <button disabled="disabled" v-else>pick</button>
+              <button disabled="disabled" v-else>Out of Stock!!</button>
             </div>
           </div>
         </div>
@@ -72,8 +93,17 @@
       },
       methods: {
         addToPicked() {
-          this.picked.push(this.module.id); //pushing picked modules inside the picked arraw
-          this.module.availableSpaces--; //decreases the amount of spaces available each time the user adds a slot.
+          this.picked.push(this.module.id); //pushing picked modules inside the picked array
+        },
+      },
+      computed: {
+        //function to check if user can still pick modules
+        canPick() {
+          return this.picked.length < 6; //returns true if the user has less than 6 items in the cart
+        },
+        //function that returns the number of available modules
+        numAvailableMod() {
+          return this.module.availableSpaces - this.picked.length;
         },
       },
     });
