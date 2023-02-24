@@ -43,8 +43,7 @@
               <p>Availability: {{module.availableSpaces}}</p>
               <button
                 v-if="module.availableSpaces > 0"
-                v-on:click="addToPicked"
-              >
+                v-on:click="addToPicked">
                 pick
               </button>
               <button disabled="disabled" v-else>pick</button>
