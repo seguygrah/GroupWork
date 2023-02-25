@@ -13,14 +13,32 @@
   </head>
   <body>
     <style>
+      /* styles the cart items */
+      #cartItem {
+        background-color: teal;
+        padding: 20px;
+        border-radius: 10px;
+        width: fit-content;
+      }
       /* styles the module box  */
       .moduleBox {
         display: flex;
         align-items: center;
         border: 2px solid teal;
-        border-radius: 20px;
+        border-radius: 10px;
         margin: 10px 40px;
         max-width: fit-content;
+        background-color: teal;
+      }
+      /* class for styling white text */
+      .w-text {
+        color: white;
+      }
+
+      /* styles the image */
+      img {
+        border-radius: 20px;
+        width: 80%;
       }
       /* styles the h1 tag */
       h1 {
@@ -28,26 +46,25 @@
       }
       /* styles the button */
       #button {
-        background-color: teal;
+        background-color: orange;
         color: white;
-        padding: 10px;
-        font-size: medium;
-        border-radius: 15px;
+        padding: 7px;
+        border-radius: 12px;
       }
-      /* styles the module name */
-      #modName {
-        color: orange;
-      }
+
       /* styles the module details  */
       .detailBox {
         margin: 10px 30px;
+        margin-left: 0px;
       }
     </style>
     <div id="app">
       <!--mounting application-->
       <main>
         <div>
-          <h1>Picked Slots: {{picked.length}}</h1>
+          <h1 id="cartItem">
+            Cart Items: <em class="w-text">{{picked.length}}</em>
+          </h1>
           <!--Defining the picked slots. {{picked.length}} will display the slots available-->
 
           <div class="moduleBox">
@@ -57,14 +74,14 @@
             </figure>
 
             <div class="detailBox">
-              <h2>Module:<b id="modName"> {{module.modName}} </b></h2>
+              <h3>Subject:<b class="w-text"> {{module.modName}} </b></h3>
               <p><b>Location:</b> {{module.location}}</p>
               <p><b>Price:</b> {{module.price}}</p>
-              <p><b>Availability:</b> {{numAvailableMod}}</p>
+              <p><b>Spaces:</b> <b class="w-text">{{numAvailableMod}}</b></p>
               <button v-if="canPick" id="button" v-on:click="addToPicked">
-                Pick
+                Add To Cart
               </button>
-              <button disabled="disabled" v-else>Class is full</button>
+              <button disabled="disabled" v-else>Add to Cart</button>
             </div>
           </div>
         </div>
@@ -96,7 +113,7 @@
       computed: {
         //function to check if user can still pick modules
         canPick() {
-          return this.picked.length < 6; //returns true if the user has less than 6 items in the cart
+          return this.picked.length < this.module.availableSpaces; //returns true if they're still available spaces in the module
         },
         //function that returns the number of available modules
         numAvailableMod() {
